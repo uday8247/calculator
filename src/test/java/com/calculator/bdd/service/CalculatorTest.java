@@ -40,4 +40,10 @@ class CalculatorTest {
 		Assertions.assertEquals(15, sum);
 	}
 	
+	@Test
+	void testSumWithMoreThanTwoNumbersSeperatedByNewLine() {
+		int sum = calculator.add("1\n2,3");
+		Assertions.assertEquals(6, sum);
+	}
+	
 }
