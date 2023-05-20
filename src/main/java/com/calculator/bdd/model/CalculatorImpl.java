@@ -1,5 +1,8 @@
 package com.calculator.bdd.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CalculatorImpl implements Calculator{
 
 	@Override
@@ -11,11 +14,20 @@ public class CalculatorImpl implements Calculator{
 			return Integer.parseInt(numbers);
 		}
 		String numbersUpdated = numbers.replaceAll("(\r\n|\n)", ",");
-		System.out.println(numbersUpdated);
 		String[] numbersArray = numbersUpdated.split(",");
+		List<Integer> negativeNumbers = new ArrayList<>();
 		int sum = 0;
 		for(int i=0; i< numbersArray.length; i++) {
-			sum += Integer.parseInt(numbersArray[i]);
+			int a = Integer.parseInt(numbersArray[i]);
+			if(a<0) {
+				negativeNumbers.add(a);
+			} else {
+				sum += a ;
+			}
+		}
+		if(negativeNumbers.size() > 0) {
+			System.out.println("negatives not allowed " + negativeNumbers);
+			throw new RuntimeException("negatives not allowed - " + negativeNumbers);
 		}
 		return sum;
 	}

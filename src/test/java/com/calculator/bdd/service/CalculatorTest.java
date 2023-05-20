@@ -46,4 +46,9 @@ class CalculatorTest {
 		Assertions.assertEquals(6, sum);
 	}
 	
+	@Test()
+	void testSumWithMoreThanTwoNumbersWithNegativeNumbers() {
+		 Assertions.assertThrows(RuntimeException.class, () -> calculator.add("1,-2,-3"));
+	}
+	
 }
