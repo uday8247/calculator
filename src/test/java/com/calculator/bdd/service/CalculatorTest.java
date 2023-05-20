@@ -16,10 +16,17 @@ public class CalculatorTest {
 	}
 	
 	@Test
-	void testSumWithOneString() {
+	void testSumWithOneNumber() {
 		Calculator calculator = new CalculatorImpl();
 		int sum = calculator.add("1");
 		Assertions.assertEquals(1, sum);
+	}
+	
+	@Test
+	void testSumWithTwoNumbers() {
+		Calculator calculator = new CalculatorImpl();
+		int sum = calculator.add("1,2");
+		Assertions.assertEquals(3, sum);
 	}
 	
 	
