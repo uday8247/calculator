@@ -22,4 +22,5 @@ public class CalculatorTest {
 		Assertions.assertEquals(1, sum);
 	}
 	
+	
 }
