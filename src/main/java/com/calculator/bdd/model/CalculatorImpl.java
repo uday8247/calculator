@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CalculatorImpl implements Calculator{
-
+    
 	@Override
+	
 	public int add(String numbers) {
 		if(numbers.equals("")) {
 			return 0;
@@ -13,22 +14,36 @@ public class CalculatorImpl implements Calculator{
 		if(numbers.length() == 1) {
 			return Integer.parseInt(numbers);
 		}
-		String numbersUpdated = numbers.replaceAll("(\r\n|\n)", ",");
-		String[] numbersArray = numbersUpdated.split(",");
+		else{
+			String delimiter = ",";
+        if (numbers.matches("//(.*)\n(.*)")) {
+            delimiter = Character.toString(numbers.charAt(2));
+            numbers = numbers.substring(4);
+        }
+
+        String[] numList = splitNumbers(numbers, delimiter + "|\n");
+        return sum(numList);
+	}
+	}
+		private int sum(String[] numbersArray) {
 		List<Integer> negativeNumbers = new ArrayList<>();
-		int sum = 0;
+		int total = 0;
 		for(int i=0; i< numbersArray.length; i++) {
 			int a = Integer.parseInt(numbersArray[i]);
 			if(a<0) {
 				negativeNumbers.add(a);
 			} else {
-				sum += a ;
+				total += a ;
 			}
 		}
 		if(negativeNumbers.size() > 0) {
 			System.out.println("negatives not allowed " + negativeNumbers);
 			throw new RuntimeException("negatives not allowed - " + negativeNumbers);
 		}
-		return sum;
+		return total;
+	}
+
+	private String[] splitNumbers(String numbers, String divider) {
+		return numbers.split(divider);
 	}
 }

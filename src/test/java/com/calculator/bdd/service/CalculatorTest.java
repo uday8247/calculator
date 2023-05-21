@@ -51,4 +51,10 @@ class CalculatorTest {
 		 Assertions.assertThrows(RuntimeException.class, () -> calculator.add("1,-2,-3"));
 	}
 	
+	@Test
+	void testSumWithDelimiters() {
+		int sum = calculator.add("//;\n1;2");
+		Assertions.assertEquals(3, sum);
+	}
+	
 }
